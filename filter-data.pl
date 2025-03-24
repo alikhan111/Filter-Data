@@ -3,8 +3,7 @@ use CGI::Carp qw(fatalsToBrowser);
 
 ##################################
 # Created By Ali Khan
-# ali.ak.khan@oracle.com
-# Property of Oracle
+# alikhan111@yahoo.com
 ##################################
 
 ### File Names ###
