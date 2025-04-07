@@ -3,7 +3,8 @@ use CGI::Carp qw(fatalsToBrowser);
 
 ##################################
 # Created By Ali Khan
-# alikhan111@yahoo.com
+# ali.ak.khan@oracle.com
+# Property of Oracle
 ##################################
 
 ### File Names ###
@@ -15,15 +16,16 @@ my $user_level1;
 my $user_level2;
 my $user_level3;
 my $user_level4;
-my $user_slicer1;
+my $user_level5;
+my $user_level6;
 
 ### System Input Data ###
 my $level1;
 my $level2;
 my $level3;
 my $level4;
-my $slicer1;
-my $slicer2;
+my $level5;
+my $level6;
 
 ### Important Variables ###
 my @full_data;
@@ -53,29 +55,29 @@ sub collect_user_data
     print "Please enter filter values:\n";
     print "Leave fields blank if not applicable:\n";
     
-    print "Level1 Entry: ";
+    print "Column Entry 1: ";
     $user_level1 = <STDIN>;
     chomp $user_level1;
     
-    print "Level2 Entry: ";
+    print "Column Entry 2: ";
     $user_level2 = <STDIN>;
     chomp $user_level2;
 
-    print "Level3 Entry: ";
+    print "Column Entry 3: ";
     $user_level3 = <STDIN>;
     chomp $user_level3;
 
-    print "Level4 Entry: ";
+    print "Column Entry 4: ";
     $user_level4 = <STDIN>;
     chomp $user_level4;
 
-    print "Slicer1 Entry: ";
-    $user_slicer1 = <STDIN>;
-    chomp $user_slicer1; 
+    print "Column Entry 5: ";
+    $user_level5 = <STDIN>;
+    chomp $user_level5; 
     
-    print "Slicer2 Entry: ";
-    $user_slicer2 = <STDIN>;
-    chomp $user_slicer2;  
+    print "Column Entry 6: ";
+    $user_level6 = <STDIN>;
+    chomp $user_level6;  
 
     if(($user_level1 eq '') || ($user_level1 eq ' '))
     {
@@ -93,17 +95,17 @@ sub collect_user_data
     {
         undef $user_level4;
     }        
-    if(($user_slicer1 eq '') || ($user_slicer1 eq ' '))
+    if(($user_level5 eq '') || ($user_level5 eq ' '))
     {
-        undef $user_slicer1;
+        undef $user_level5;
     }
-    if(($user_slicer2 eq '') || ($user_slicer2 eq ' '))
+    if(($user_level6 eq '') || ($user_level6 eq ' '))
     {
-        undef $user_slicer2;
+        undef $user_level6;
     }    
     
     #Zero Variables is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     {        
         print"Nothing Is Defined.\n";
         print"Processed Stopped.\n";
@@ -147,7 +149,7 @@ sub analyse_data
 
         #Set field values
         my @values = split /,/, $val;
-        ($level1, $level2, $level3, $level4, $slicer1, $slicer2 ) = @values[0..5];
+        ($level1, $level2, $level3, $level4, $level5, $level6 ) = @values[0..5];
 
         $total_num++;
         &filter_data($val);
@@ -164,7 +166,7 @@ sub filter_data
 #####################################################################################################################
 
     #Only level1 is defined 
-    if((defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     {
 
         if(($level1 eq $user_level1))
@@ -178,7 +180,7 @@ sub filter_data
         }
     }
     #Only level2 is defined 
-    if((!defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)) && (!defined($user_slicer2)))
+    if((!defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)) && (!defined($user_level6)))
     {
     
         if(($level2 eq $user_level2))
@@ -192,7 +194,7 @@ sub filter_data
         }
     }
     #Only level3 is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((!defined($user_level1)) && (!defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     {
     
         if(($level3 eq $user_level3))
@@ -206,7 +208,7 @@ sub filter_data
         }
     }   
     #Only level4 is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     {
     
         if(($level4 eq $user_level4))
@@ -220,11 +222,11 @@ sub filter_data
         }
     } 
     
-    #Only slicer1 is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (defined($user_slicer1)) && (!defined($user_slicer2)))
+    #Only level5 is defined 
+    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (defined($user_level5)) && (!defined($user_level6)))
     {
     
-        if(($slicer1 eq $user_slicer1))
+        if(($level5 eq $user_level5))
         {
             push(@new_data,$value);
             $num++;
@@ -235,11 +237,11 @@ sub filter_data
         }
     }
 
-    #Only slicer2 is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (defined($user_slicer2)))
+    #Only level6 is defined 
+    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (defined($user_level6)))
     {
 
-        if(($slicer2 eq $user_slicer2))
+        if(($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -255,7 +257,7 @@ sub filter_data
 #####################################################################################################################    
     
     #level1 & level2 is defined 
-    if((defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     {   
         if(($level1 eq $user_level1) && ($level2 eq $user_level2))
         {
@@ -269,7 +271,7 @@ sub filter_data
     }
 
     #level1 & level3 is defined 
-    if((defined($user_level1)) && (!defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((defined($user_level1)) && (!defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     {   
         if(($level1 eq $user_level1) && ($level3 eq $user_level3))
         {
@@ -282,7 +284,7 @@ sub filter_data
         }
     }
     #level1 & level4 is defined 
-    if((defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     {   
         if(($level1 eq $user_level1) && ($level4 eq $user_level4))
         {
@@ -294,10 +296,10 @@ sub filter_data
             next;
         }
     }
-    #level1 & slicer1 is defined 
-    if((defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (defined($user_slicer1)) && (!defined($user_slicer2)))
+    #level1 & level5 is defined 
+    if((defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (defined($user_level5)) && (!defined($user_level6)))
     {   
-        if(($level1 eq $user_level1) && ($slicer1 eq $user_slicer1))
+        if(($level1 eq $user_level1) && ($level5 eq $user_level5))
         {
             push(@new_data,$value);
             $num++;
@@ -307,10 +309,10 @@ sub filter_data
             next;
         }
     }
-    #level1 & slicer2 is defined 
-    if((defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (defined($user_slicer2)))
+    #level1 & level6 is defined 
+    if((defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (defined($user_level6)))
     {   
-        if(($level1 eq $user_level1) && ($slicer2 eq $user_slicer2))
+        if(($level1 eq $user_level1) && ($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -323,7 +325,7 @@ sub filter_data
     
     #Two Varibale Combination
     #level2 & level3 is defined 
-    if((!defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((!defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     {   
         if(($level2 eq $user_level2) && ($level3 eq $user_level3))
         {
@@ -337,7 +339,7 @@ sub filter_data
     }
 
     #level2 & level4 is defined 
-    if((!defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((!defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     {   
         if(($level2 eq $user_level2) && ($level4 eq $user_level4))
         {
@@ -349,11 +351,11 @@ sub filter_data
             next;
         }
     }
-    #level2 & slicer1 is defined 
-    if((!defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (defined($user_slicer1)) && (!defined($user_slicer2)))
+    #level2 & level5 is defined 
+    if((!defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (defined($user_level5)) && (!defined($user_level6)))
     { 
         
-        if(($level2 eq $user_level2) && ($slicer1 eq $user_slicer1))
+        if(($level2 eq $user_level2) && ($level5 eq $user_level5))
         {
             push(@new_data,$value);
             $num++;
@@ -363,11 +365,11 @@ sub filter_data
             next;
         }
     }
-    #level2 & slicer2 is defined 
-    if((!defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (defined($user_slicer2)))
+    #level2 & level6 is defined 
+    if((!defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (defined($user_level6)))
     { 
         
-        if(($level2 eq $user_level2) && ($slicer2 eq $user_slicer2))
+        if(($level2 eq $user_level2) && ($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -380,7 +382,7 @@ sub filter_data
     
     #Two Varibale Combination
     #level3 & level4 is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((!defined($user_level1)) && (!defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     {   
         if(($level3 eq $user_level3) && ($level4 eq $user_level4))
         {
@@ -393,11 +395,11 @@ sub filter_data
         }
     }
 
-    #level3 & slicer1 is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (defined($user_slicer1)) && (!defined($user_slicer2)))
+    #level3 & level5 is defined 
+    if((!defined($user_level1)) && (!defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (defined($user_level5)) && (!defined($user_level6)))
     { 
         
-        if(($level3 eq $user_level3) && ($slicer1 eq $user_slicer1))
+        if(($level3 eq $user_level3) && ($level5 eq $user_level5))
         {
             push(@new_data,$value);
             $num++;
@@ -407,11 +409,11 @@ sub filter_data
             next;
         }
     }
-    #level3 & slicer2 is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (defined($user_slicer2)))
+    #level3 & level6 is defined 
+    if((!defined($user_level1)) && (!defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (defined($user_level6)))
     { 
         
-        if(($level3 eq $user_level3) && ($slicer2 eq $user_slicer2))
+        if(($level3 eq $user_level3) && ($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -423,11 +425,11 @@ sub filter_data
     }   
     
     #Two Varibale Combination
-    #level4 & slicer1 is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (defined($user_slicer1)) && (!defined($user_slicer2)))
+    #level4 & level5 is defined 
+    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (defined($user_level5)) && (!defined($user_level6)))
     { 
         
-        if(($level4 eq $user_level4) && ($slicer1 eq $user_slicer1))
+        if(($level4 eq $user_level4) && ($level5 eq $user_level5))
         {
             push(@new_data,$value);
             $num++;
@@ -437,11 +439,11 @@ sub filter_data
             next;
         }
     }
-    #level4 & slicer2 is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (!defined($user_slicer1)) && (defined($user_slicer2)))
+    #level4 & level6 is defined 
+    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (!defined($user_level5)) && (defined($user_level6)))
     { 
         
-        if(($level4 eq $user_level4) && ($slicer2 eq $user_slicer2))
+        if(($level4 eq $user_level4) && ($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -451,10 +453,10 @@ sub filter_data
             next;
         }
     }    
-    #slicer1 & slicer2 is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (defined($user_slicer1)) && (defined($user_slicer2)))
+    #level5 & level6 is defined 
+    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (defined($user_level5)) && (defined($user_level6)))
     {         
-        if(($slicer1 eq $user_slicer1) && ($slicer2 eq $user_slicer2))
+        if(($level5 eq $user_level5) && ($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -472,7 +474,7 @@ sub filter_data
 ##################################################################################################################### 
 
     #level1, level2, level3 is defined 
-    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     { 
     
         if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level3 eq $user_level3))
@@ -486,7 +488,7 @@ sub filter_data
         }
     }
     #level1, level2, level4 is defined 
-    if((defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     { 
     
         if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level4 eq $user_level4))
@@ -499,11 +501,11 @@ sub filter_data
             next;
         }
     }    
-    #level1, level2, slicer1 is defined 
-    if((defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (defined($user_slicer1)) && (!defined($user_slicer2)))
+    #level1, level2, level5 is defined 
+    if((defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (defined($user_level5)) && (!defined($user_level6)))
     { 
     
-        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($slicer1 eq $user_slicer1))
+        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level5 eq $user_level5))
         {
             push(@new_data,$value);
             $num++;
@@ -514,11 +516,11 @@ sub filter_data
         }
     } 
     
-    #level1, level2, slicer2 is defined 
-    if((defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (defined($user_slicer2)))
+    #level1, level2, level6 is defined 
+    if((defined($user_level1)) && (defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (defined($user_level6)))
     { 
     
-        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($slicer2 eq $user_slicer2))
+        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -529,7 +531,7 @@ sub filter_data
         }
     }     
     #level2, level3, level4 is defined 
-    if((!defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((!defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     { 
     
         if(($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level4 eq $user_level4))
@@ -542,11 +544,11 @@ sub filter_data
             next;
         }
     }     
-    #level2, level3, slicer1 is defined 
-    if((!defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (defined($user_slicer1)) && (!defined($user_slicer2)))
+    #level2, level3, level5 is defined 
+    if((!defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (defined($user_level5)) && (!defined($user_level6)))
     { 
     
-        if(($level2 eq $user_level2) && ($level3 eq $user_level3) && ($slicer1 eq $user_slicer1))
+        if(($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level5 eq $user_level5))
         {
             push(@new_data,$value);
             $num++;
@@ -557,11 +559,11 @@ sub filter_data
         }
     }  
 
-    #level2, level3, slicer2 is defined 
-    if((!defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (defined($user_slicer2)))
+    #level2, level3, level6 is defined 
+    if((!defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (defined($user_level6)))
     { 
     
-        if(($level2 eq $user_level2) && ($level3 eq $user_level3) && ($slicer2 eq $user_slicer2))
+        if(($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -571,11 +573,11 @@ sub filter_data
             next;
         }
     }
-    #level3, slicer1, slicer2 is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (defined($user_slicer2)))
+    #level3, level5, level6 is defined 
+    if((!defined($user_level1)) && (!defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (defined($user_level6)))
     { 
     
-        if(($level3 eq $user_level3) && ($slicer1 eq $user_slicer1) && ($slicer2 eq $user_slicer2))
+        if(($level3 eq $user_level3) && ($level5 eq $user_level5) && ($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -585,11 +587,11 @@ sub filter_data
             next;
         }
     }   
-    #level4, slicer1, slicer2 is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (!defined($user_slicer1)) && (defined($user_slicer2)))
+    #level4, level5, level6 is defined 
+    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (defined($user_level4)) && (!defined($user_level5)) && (defined($user_level6)))
     { 
     
-        if(($level4 eq $user_level4) && ($slicer1 eq $user_slicer1) && ($slicer2 eq $user_slicer2))
+        if(($level4 eq $user_level4) && ($level5 eq $user_level5) && ($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -604,7 +606,7 @@ sub filter_data
     #Four Varibale Combination
 #####################################################################################################################     
     #level1, level2, level3 level4 is defined 
-    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     { 
     
         if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level4 eq $user_level4))
@@ -617,11 +619,11 @@ sub filter_data
             next;
         }
     }    
-    #level1, level2, level3, slicer1 is defined 
-    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (defined($user_slicer1)) && (!defined($user_slicer2)))
+    #level1, level2, level3, level5 is defined 
+    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (defined($user_level5)) && (!defined($user_level6)))
     { 
     
-        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level3 eq $user_level3) && ($slicer1 eq $user_slicer1))
+        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level5 eq $user_level5))
         {
             push(@new_data,$value);
             $num++;
@@ -631,11 +633,11 @@ sub filter_data
             next;
         }
     } 
-    #level1, level2, level3, slicer2 is defined 
-    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (defined($user_slicer1)) && (!defined($user_slicer2)))
+    #level1, level2, level3, level6 is defined 
+    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (!defined($user_level4)) && (defined($user_level5)) && (!defined($user_level6)))
     { 
     
-        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level3 eq $user_level3) && ($slicer2 eq $user_slicer2))
+        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -646,11 +648,11 @@ sub filter_data
         }
     }      
     
-    #level2, level3, level4, slicer1 is defined 
-    if((!defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (defined($user_slicer1)) && (!defined($user_slicer2)))
+    #level2, level3, level4, level5 is defined 
+    if((!defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (defined($user_level5)) && (!defined($user_level6)))
     { 
     
-        if(($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level4 eq $user_level4) && ($slicer1 eq $user_slicer1))
+        if(($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level4 eq $user_level4) && ($level5 eq $user_level5))
         {
             push(@new_data,$value);
             $num++;
@@ -661,11 +663,11 @@ sub filter_data
         }
     } 
  
-     #level2, level3, level4, slicer2 is defined 
-    if((!defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (!defined($user_slicer1)) && (defined($user_slicer2)))
+     #level2, level3, level4, level6 is defined 
+    if((!defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (!defined($user_level5)) && (defined($user_level6)))
     { 
     
-        if(($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level4 eq $user_level4) && ($slicer2 eq $user_slicer2))
+        if(($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level4 eq $user_level4) && ($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -680,11 +682,11 @@ sub filter_data
 #####################################################################################################################    
     #Five Varibale Combination
 #####################################################################################################################    
-    #level1, level2, level2, level3, level4, slicer1 is defined 
-    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (defined($user_slicer1)) && (!defined($user_slicer2)))
+    #level1, level2, level2, level3, level4, level5 is defined 
+    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (defined($user_level5)) && (!defined($user_level6)))
     { 
     
-        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level4 eq $user_level4) && ($slicer1 eq $user_slicer1))
+        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level4 eq $user_level4) && ($level5 eq $user_level5))
         {
             push(@new_data,$value);
             $num++;
@@ -694,11 +696,11 @@ sub filter_data
             next;
         }
     } 
-    #level1, level2, level2, level3, level4, slicer2 is defined 
-    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (!defined($user_slicer1)) && (defined($user_slicer2)))
+    #level1, level2, level2, level3, level4, level6 is defined 
+    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (!defined($user_level5)) && (defined($user_level6)))
     { 
     
-        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level4 eq $user_level4) && ($slicer2 eq $user_slicer2))
+        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level4 eq $user_level4) && ($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -712,11 +714,11 @@ sub filter_data
 #####################################################################################################################   
     #Full Varibale Combination
 #####################################################################################################################    
-    #level1, level2, level2, level3, level4, slicer1, slicer2 is defined 
-    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (defined($user_slicer1)) && (defined($user_slicer2)))
+    #level1, level2, level2, level3, level4, level5, level6 is defined 
+    if((defined($user_level1)) && (defined($user_level2)) && (defined($user_level3)) && (defined($user_level4)) && (defined($user_level5)) && (defined($user_level6)))
     { 
     
-        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level4 eq $user_level4) && ($slicer1 eq $user_slicer1) && ($slicer2 eq $user_slicer2))
+        if(($level1 eq $user_level1) && ($level2 eq $user_level2) && ($level3 eq $user_level3) && ($level4 eq $user_level4) && ($level5 eq $user_level5) && ($level6 eq $user_level6))
         {
             push(@new_data,$value);
             $num++;
@@ -728,8 +730,8 @@ sub filter_data
     } 
    
  #####################################################################################################################    
-    #Zero Variables is defined 
-    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_slicer1)) && (!defined($user_slicer2)))
+    #Zero Varibale Combination 
+    if((!defined($user_level1)) && (!defined($user_level2)) && (!defined($user_level3)) && (!defined($user_level4)) && (!defined($user_level5)) && (!defined($user_level6)))
     {        
         print"Nothing is defined.\n";
         print"Processed stopped.\n";
